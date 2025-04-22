@@ -356,7 +356,9 @@ public class Main {
             Estudiante est = new Estudiante("Nombre", "Apellido", cedula, 20, "correo@epn.edu.ec", "094568273274", "Ibarra", "16-10-2002");
             // Validar la cédula
             if (est.CedulaValida()) {
-                System.out.println("La cedula " + cedula + " es válida ✅.\n");
+
+                String provinciaNombre = est.getNombreProvincia();
+                System.out.println("La cedula " + cedula + " es válida ✅" + " y pertenece a la provincia de: " + provinciaNombre + "\n");
             } else {
                 System.out.println("La cedula " + cedula + " no es válida ❌.\n");
             }

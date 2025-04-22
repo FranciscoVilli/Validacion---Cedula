@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Estudiante {
     private String nombre;
     private String apellido;
@@ -30,7 +33,9 @@ public class Estudiante {
         }
 
         int provincia = Integer.parseInt(cedula.substring(0, 2));
-        if (provincia < 1 || provincia > 24) {
+        String nombreProvincia = obtenerNombreProvincia(provincia);
+
+        if (nombreProvincia == null) {
             return false;
         }
 
@@ -61,5 +66,42 @@ public class Estudiante {
 
     public boolean esExtranjero() {
         return !CedulaValida();
+    }
+
+    public String getNombreProvincia() {
+        int provinciaCodigo = Integer.parseInt(cedula.substring(0, 2));  // Asumiendo que la cédula tiene un formato correcto
+        return obtenerNombreProvincia(provinciaCodigo);
+    }
+
+    private String obtenerNombreProvincia(int codigoProvincia) {
+        // Mapa que relaciona el código de la provincia con su nombre
+        Map<Integer, String> provincias = new HashMap<>();
+        provincias.put(1, "Azuay");
+        provincias.put(2, "Bolivar");
+        provincias.put(3, "Cañar");
+        provincias.put(4, "Carchi");
+        provincias.put(5, "Cotopaxi");
+        provincias.put(6, "Chimborazo");
+        provincias.put(7, "El Oro");
+        provincias.put(8, "Esmeraldas");
+        provincias.put(9, "Guayas");
+        provincias.put(10, "Imbabura");
+        provincias.put(11, "Loja");
+        provincias.put(12, "Los Rios");
+        provincias.put(13, "Manabi");
+        provincias.put(14, "Morona Santiago");
+        provincias.put(15, "Napo");
+        provincias.put(16, "Pastaza");
+        provincias.put(17, "Pichincha");
+        provincias.put(18, "Tungurahua");
+        provincias.put(19, "Zamora Chinchipe");
+        provincias.put(20, "Galapagos");
+        provincias.put(21, "Sucumbios");
+        provincias.put(22, "Orellana");
+        provincias.put(23, "Santo Domingo de los Tsachilas");
+        provincias.put(24, "Santa Elena");
+        provincias.put(30, "Ecuatorianos residentes en el exterior");
+
+        return provincias.get(codigoProvincia); // Retorna el nombre de la provincia o null si no se encuentra el código
     }
 }
