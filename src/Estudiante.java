@@ -24,29 +24,33 @@ public class Estudiante {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public boolean CedulaValida() {
-        return validarCedulaEcuatoriana(this.cedula);
-    }
 
     private boolean validarCedulaEcuatoriana(String cedula) {
-        if (cedula == null || cedula.length() != 10) {
+        if (cedula == null || !cedula.matches("\\d{10}")) {
             return false;
         }
+        // Se realiza la comprobación de los dos primeros dígitos de la cédula con respecto a los 30 códigos de provincia existentes
+        // según los datos del registro civil.
 
         int provincia = Integer.parseInt(cedula.substring(0, 2));
-        String nombreProvincia = obtenerNombreProvincia(provincia);
+        if (provincia < 1 || provincia > 24) {
 
-        if (nombreProvincia == null) {
-            return false;
+            if (provincia != 30) {
+                return false;
+            }
         }
-
+        // En el tercer digito comprobamos que este en el rango de 0 - 5
         int tercerDigito = Character.getNumericValue(cedula.charAt(2));
         if (tercerDigito >= 6) {
             return false;
         }
-
+        // Se multiplican los primeros 9 dígitos por coeficientes alternos (2 y 1).
+        // Si el resultado de una multiplicación es ≥ 10, se le resta 9.
+        // Luego se suman todos los valores y se calcula el dígito verificador con: 10 - (suma % 10).
+        // Si el resultado es 10, se convierte en 0.
         int[] coeficientes = {2, 1, 2, 1, 2, 1, 2, 1, 2};
         int suma = 0;
+
         for (int i = 0; i < coeficientes.length; i++) {
             int digito = Character.getNumericValue(cedula.charAt(i));
             int resultado = coeficientes[i] * digito;
@@ -65,12 +69,16 @@ public class Estudiante {
         return digitoVerificador == digitoCalculado;
     }
 
+    public boolean CedulaValida() {
+        return validarCedulaEcuatoriana(this.cedula);
+    }
+
     public boolean esExtranjero() {
         return !CedulaValida();
     }
 
     public String getNombreProvincia() {
-        int provinciaCodigo = Integer.parseInt(cedula.substring(0, 2));  // Asumiendo que la cédula tiene un formato correcto
+        int provinciaCodigo = Integer.parseInt(cedula.substring(0, 2));
         return obtenerNombreProvincia(provinciaCodigo);
     }
 
@@ -103,6 +111,6 @@ public class Estudiante {
         provincias.put(24, "Santa Elena");
         provincias.put(30, "Ecuatorianos residentes en el exterior");
 
-        return provincias.get(codigoProvincia); // Retorna el nombre de la provincia o null si no se encuentra el código
+        return provincias.get(codigoProvincia);
     }
 }

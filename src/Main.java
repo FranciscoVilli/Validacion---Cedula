@@ -15,14 +15,14 @@ public class Main {
                 "0511235479", "1514032819", "0544367824", "1727285993", "1510133246", "0224432959", "2324635007", "0728451009", "2201654387", "2326367533", "0511506793", "0517028653", "0728976741", "1723664519", "2222379352", "0516248764", "2227842131", "2325231054", "1730972849", "2129252134", "1527605089", "1514319072", "0540172543", "1728580630", "1729011729", "2325764034", "0226985148", "1528320849", "0728170213", "2322291707", "2322741556", "2320431090", "1721515439", "2220107809", "1721794317",
                 "1732244061", "2324547806", "1722843588", "0518090460", "2326713277", "0518259374", "1729445005", "0549157777", "2327069683", "0504796548", "0516786249", "2120173272", "1724923479", "2323807563", "2228155969", "0521284952", "1725690851", "0737893617", "2209937215", "2322992783", "2323724105", "2311689054", "0727178124", "1523099641", "1518270159", "2208797656", "2323592318", "1512144083", "2320835499", "2205423545", "1737347465",
                 "0725915201", "2324245697", "0516784946", "1721419485", "0527130243", "2226885210", "1514930687", "1736625869", "0513057108", "2322795711", "2226017020", "1726175689", "1720804095", "1513947253", "2312398651", "0324347571", "1732324994", "232671","hola","*%",
-                "2324804118", "0526063277", "1727441327", "2323428756", "1526825339", "2201679324", "2327275619", "0520198640", "1730852047", "2225274032", "2320859165", "0516502191", "0729018227", "2324018760",
+                "2324804118", "0526063277", "1727441327", "2323428756", "1526825339", "2201679324", "2327275619", "0520198640", "1730852047", "2225274032", "2320859165", "0516502191", "0729018227", "2324018760", "3009937215" , "3012345678"
         };
 
         System.out.println("-------COMPROBACIÓN DE 500 CÉDULAS DISTINTAS--------\n");
 
         for (String cedula : cedulas) {
             Estudiante est = new Estudiante("Nombre", "Apellido", cedula, 20, "correo@epn.edu.ec", "094568273274", "Ibarra", "16-10-2002");
-            // Validar la cédula
+
 
             if (est.CedulaValida()) {
                 String provinciaNombre = est.getNombreProvincia();
@@ -35,14 +35,14 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("-------SISTEMA DE INGRESO DE DATOS--------\n");
-        // Pedir cuántos estudiantes se van a ingresar
+
         System.out.print("¿Cuántos estudiantes deseas ingresar? ");
         int numEstudiantes = scanner.nextInt();
-        scanner.nextLine(); // Consumir la nueva línea después de ingresar el número
+        scanner.nextLine();
 
-        // Iterar sobre el número de estudiantes
+
         for (int i = 0; i < numEstudiantes; i++) {
-            // Pedir los datos del estudiante
+
             System.out.println("\nIngresa los datos del estudiante #" + (i + 1));
 
             System.out.print("Nombre: ");
@@ -56,7 +56,7 @@ public class Main {
 
             System.out.print("Edad: ");
             int edad = scanner.nextInt();
-            scanner.nextLine(); // Consumir la nueva línea
+            scanner.nextLine();
 
             System.out.print("Correo: ");
             String correo = scanner.nextLine();
@@ -70,10 +70,10 @@ public class Main {
             System.out.print("Fecha de nacimiento (dd-MM-yyyy): ");
             String fechaNacimiento = scanner.nextLine();
 
-            // Crear el objeto Estudiante
+
             Estudiante est = new Estudiante(nombre, apellido, cedula, edad, correo, telefono, direccion, fechaNacimiento);
 
-            // Validar la cédula
+
             if (est.CedulaValida()) {
                 String provinciaNombre = est.getNombreProvincia();
                 System.out.println("La cédula " + cedula + " es válida ✅ y pertenece a la provincia de: " + provinciaNombre + "\n");
