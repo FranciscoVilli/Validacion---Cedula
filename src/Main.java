@@ -65,13 +65,13 @@ public class Main {
             String telefono = scanner.nextLine();
 
             System.out.print("Ciudad de residencia: ");
-            String ciudad = scanner.nextLine();
+            String direccion = scanner.nextLine();
 
             System.out.print("Fecha de nacimiento (dd-MM-yyyy): ");
             String fechaNacimiento = scanner.nextLine();
 
             // Crear el objeto Estudiante
-            Estudiante est = new Estudiante(nombre, apellido, cedula, edad, correo, telefono, ciudad, fechaNacimiento);
+            Estudiante est = new Estudiante(nombre, apellido, cedula, edad, correo, telefono, direccion, fechaNacimiento);
 
             // Validar la cédula
             if (est.CedulaValida()) {

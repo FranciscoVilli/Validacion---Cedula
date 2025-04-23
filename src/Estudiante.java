@@ -20,6 +20,7 @@ public class Estudiante {
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
+        this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
     }
 
